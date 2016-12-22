@@ -1,0 +1,14 @@
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for klient in klients %}
+        <div class="post">
+            <div class="date">
+                {{ klient.numerkarty }}
+            </div>
+            <h1>{{ klient.imie }}{{" "}}{{ klient.nazwisko }}</a></h1>
+            <p>{{ klient.telefon }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}
