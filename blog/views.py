@@ -54,7 +54,7 @@ def klient_new(request):
             klient = form.save(commit=False)
             klient.author = request.user
             klient.save()
-            return redirect('klient_detail', numerkarty=numerkarty)
+            return redirect('klient_detail', numerkarty=klient.numerkarty)
     else:
         form = KlientForm()
     return render(request, 'blog/klient_edit.html', {'form': form})
