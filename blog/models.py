@@ -29,12 +29,11 @@ class Klient(models.Model):
     styl = models.CharField(max_length=200)
     instruktor = models.CharField(max_length=200)
     poziom = models.CharField(max_length=200)
-    imie = models.CharField(max_length=200)
     dzien = models.CharField(max_length=200)
-    wazneod = models.DateTimeField(blank=True, null=True)
-    waznedo = models.DateTimeField(blank=True, null=True)
-    ilosc = models.CharField(max_length=200)
-    pozostalo = models.CharField(max_length=200)
+    wazneod = models.DateField(blank=True, null=True)
+    waznedo = models.DateField(blank=True, null=True)
+    ilosc = models.IntegerField()
+    pozostalo = models.IntegerField()
 
 
     def publish(self):

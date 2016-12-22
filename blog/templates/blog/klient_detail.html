@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+      {% if klient.numerkarty %}
+          <div class="date">
+              {{ klient.numerkarty }}
+          </div>
+      {% endif %}
+        <!--{% if user.is_authenticated %}
+
+        {% endif %}-->
+        <h1>{{klient.imie}}{{" "}}{{ klient.nazwisko }}</h1>
+        <p>{{"numer telefonu: "}}{{ klient.telefon }}</p>
+        <p>{{"adres email: "}}{{ klient.email }}</p>
+        <p>{{"numer karty: "}}{{ klient.numerkarty }}</p>
+        <p>{{"uwagi: "}}{{ klient.uwagi }}</p>
+        <p>{{"styl tańca: "}}{{ klient.styl }}</p>
+        <p>{{"instruktor: "}}{{ klient.instruktor }}</p>
+        <p>{{"poziom: "}}{{ klient.poziom }}</p>
+        <p>{{"dzień tygodnia: "}}{{ klient.dzien }}</p>
+        <p>{{"ważne od: "}}{{ klient.wazneod }}</p>
+        <p>{{"ważne do: "}}{{ klient.waznedo }}</p>
+        <p>{{"ilość: "}}{{ klient.ilosc }}</p>
+        <p>{{"pozostało: "}}{{ klient.pozostalo }}</p>
+    </div>
+{% endblock %}

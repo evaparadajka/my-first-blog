@@ -42,3 +42,6 @@ def post_edit(request, pk):
 def klient_list(request):
     klients = Klient.objects.order_by('numerkarty')
     return render(request, 'blog/klient_list.html', {'klients': klients})
+def klient_detail(request, numerkarty):
+    klient = get_object_or_404(Klient, numerkarty=numerkarty)
+    return render(request, 'blog/klient_detail.html', {'klient': klient})
