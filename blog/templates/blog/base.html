@@ -26,6 +26,7 @@
       </div>
       <div class="page-header">
         {% if user.is_authenticated %}
+        <a href="{% url 'klient_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         <h1><a href="/klient_list">ZARZĄDZAJ KLIENTAMI</a></h1>
         {% endif %}
       </div>

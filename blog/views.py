@@ -3,6 +3,7 @@ from django.utils import timezone
 from .models import Post
 from .models import Klient
 from .forms import PostForm
+from .forms import KlientForm
 from django.shortcuts import redirect
 # Create your views here.
 
@@ -39,9 +40,33 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
+
 def klient_list(request):
     klients = Klient.objects.order_by('numerkarty')
     return render(request, 'blog/klient_list.html', {'klients': klients})
 def klient_detail(request, numerkarty):
     klient = get_object_or_404(Klient, numerkarty=numerkarty)
     return render(request, 'blog/klient_detail.html', {'klient': klient})
+def klient_new(request):
+    if request.method == "POST":
+        form = KlientForm(request.POST)
+        if form.is_valid():
+            klient = form.save(commit=False)
+            klient.author = request.user
+            klient.save()
+            return redirect('klient_detail', numerkarty=numerkarty)
+    else:
+        form = KlientForm()
+    return render(request, 'blog/klient_edit.html', {'form': form})
+def klient_edit(request, numerkarty):
+    klient = get_object_or_404(Klient, numerkarty=numerkarty)
+    if request.method == "POST":
+        form = KlientForm(request.POST, instance=klient)
+        if form.is_valid():
+            klient = form.save(commit=False)
+            klient.author = request.user
+            klient.save()
+            return redirect('klient_detail', numerkarty=numerkarty)
+    else:
+        form = KlientForm(instance=klient)
+    return render(request, 'blog/klient_edit.html', {'form': form})
