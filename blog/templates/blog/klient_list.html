@@ -7,7 +7,7 @@
             <div class="date">
                 {{ klient.numerkarty }}
             </div>
-            <h1><a href="{% url 'klient_detail' numerkarty=klient.numerkarty %}">{{ klient.imie }}{{" "}}{{ klient.nazwisko }}</a></h1>
+            <h3><a href="{% url 'klient_detail' numerkarty=klient.numerkarty %}">{{ klient.imie }}{{" "}}{{ klient.nazwisko }}</a></h3>
             <p>{{"numer telefonu: "}}{{ klient.telefon }}</p>
         </div>
     {% endfor %}

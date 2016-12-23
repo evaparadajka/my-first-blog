@@ -10,4 +10,4 @@ class PostForm(forms.ModelForm):
 class KlientForm(forms.ModelForm):
     class Meta:
         model = Klient
-        fields = ('imie', 'nazwisko', 'telefon', 'email', 'numerkarty', 'uwagi', 'styl', 'instruktor', 'poziom', 'dzien', 'wazneod', 'waznedo', 'ilosc', 'pozostalo',)
+        fields = ('imie', 'nazwisko', 'telefon', 'email', 'numerkarty', 'uwagi', 'styl', 'instruktor', 'poziom', 'dzien', 'wazneod', 'waznedo', 'uczestniczyl', 'ilosc', 'pozostalo',)

@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^klient/new/$', views.klient_new, name='klient_new'),
     url(r'^klient/(?P<numerkarty>[0-9]+)/$', views.klient_detail, name='klient_detail'),
     url(r'^klient/(?P<numerkarty>[0-9]+)/edit/$', views.klient_edit, name='klient_edit'),
+    url(r'^klient/(?P<numerkarty>[0-9]+)/odlicz/$', views.klient_odlicz, name='klient_odlicz'),
 ]

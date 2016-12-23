@@ -8,7 +8,7 @@
           </div>
       {% endif %}
         {% if user.is_authenticated %}
-        <a class="btn btn-default" href="{% url 'klient_edit' numerkarty=klient.numerkarty %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'klient_edit' numerkarty=klient.numerkarty %}">EDYTUJ KLIENTA <span class="glyphicon glyphicon-pencil"></span></a>
         {% endif %}
         <h1>{{klient.imie}}{{" "}}{{ klient.nazwisko }}</h1>
         <p>{{"numer telefonu: "}}{{ klient.telefon }}</p>
@@ -21,7 +21,11 @@
         <p>{{"dzień tygodnia: "}}{{ klient.dzien }}</p>
         <p>{{"ważne od: "}}{{ klient.wazneod }}</p>
         <p>{{"ważne do: "}}{{ klient.waznedo }}</p>
+        <p>{{"uczestniczyl: "}}{{ klient.uczestniczyl }}</p>
         <p>{{"ilość: "}}{{ klient.ilosc }}</p>
         <p>{{"pozostało: "}}{{ klient.pozostalo }}</p>
+        {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'klient_odlicz' numerkarty=klient.numerkarty %}">ODLICZ ZAJĘCIA <span class="glyphicon glyphicon-ok"></span></a>
+        {% endif %}
     </div>
 {% endblock %}

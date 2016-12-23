@@ -70,3 +70,11 @@ def klient_edit(request, numerkarty):
     else:
         form = KlientForm(instance=klient)
     return render(request, 'blog/klient_edit.html', {'form': form})
+def klient_odlicz(request, numerkarty):
+    klient = get_object_or_404(Klient, numerkarty=numerkarty)
+    klient.pozostalo = klient.pozostalo - 1
+    odliczenie = str(timezone.now())
+    odliczenie = odliczenie[0:10]
+    klient.uczestniczyl = klient.uczestniczyl + " " + odliczenie
+    klient.save()
+    return redirect('klient_detail', numerkarty=klient.numerkarty)
