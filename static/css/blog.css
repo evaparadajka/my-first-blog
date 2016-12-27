@@ -7,6 +7,15 @@ body {
     padding-left: 15px;
 }
 
+.sprawdz{
+  float: left;
+  font-size: 12pt;
+}
+
+.info-ewa{
+  background-color: #bbccff;
+}
+
 .page-header {
     background-color: #0066ff;
     margin-top: 0;
@@ -31,6 +40,7 @@ p, h1, h2, h3, h4 {
 .date {
     float: right;
     color: #828282;
+    font-size: 18pt
 }
 
 .save {

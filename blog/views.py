@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Post
 from .models import Klient
+from .models import Zliczenie
 from .forms import PostForm
 from .forms import KlientForm
+from .forms import ZnajdzForm
 from django.shortcuts import redirect
 # Create your views here.
 
@@ -44,6 +46,8 @@ def post_edit(request, pk):
 def klient_list(request):
     klients = Klient.objects.order_by('numerkarty')
     return render(request, 'blog/klient_list.html', {'klients': klients})
+def zarzadzaj(request):
+    return render(request, 'blog/zarzadzaj.html')
 def klient_detail(request, numerkarty):
     klient = get_object_or_404(Klient, numerkarty=numerkarty)
     return render(request, 'blog/klient_detail.html', {'klient': klient})
@@ -78,3 +82,14 @@ def klient_odlicz(request, numerkarty):
     klient.uczestniczyl = klient.uczestniczyl + " " + odliczenie
     klient.save()
     return redirect('klient_detail', numerkarty=klient.numerkarty)
+def odlicz_zajecia(request):
+    if request.method == "POST":
+        form = ZnajdzForm(request.POST)
+        if form.is_valid():
+            zliczenie = form.save(commit=False)
+            doodliczenia = zliczenie.numerkarty
+            klient = get_object_or_404(Klient, numerkarty=zliczenie.numerkarty)
+            return redirect('klient_detail', numerkarty=klient.numerkarty)
+    else:
+        form = ZnajdzForm()
+    return render(request, 'blog/odlicz_zajecia.html', {'form': form})
