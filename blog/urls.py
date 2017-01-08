@@ -16,4 +16,8 @@ urlpatterns = [
     url(r'^filtruj', views.filtruj, name='filtruj'),
     url(r'^wplaty', views.wplaty, name='wplaty'),
     url(r'^nowa_wplata', views.nowa_wplata, name='nowa_wplata'),
+    url(r'^automatycznie_odlicz_zajecia', views.automatycznie_odlicz_zajecia, name='automatycznie_odlicz_zajecia'),
+    url(r'^automatycznie/klient/(?P<numerkarty>[0-9]+)/odlicz/$', views.automatycznie_klient_odlicz, name='automatycznie_klient_odlicz'),
+    url(r'^zezwolenie', views.zezwolenie, name='zezwolenie'),
+    url(r'^brak_zezwolenia/klient/(?P<numerkarty>[0-9]+)/$', views.brak_zezwolenia, name='brak_zezwolenia'),
 ]

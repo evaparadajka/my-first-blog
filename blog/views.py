@@ -121,3 +121,31 @@ def nowa_wplata(request):
     else:
         form = WplataForm()
     return render(request, 'blog/nowa_wplata.html', {'form': form})
+def automatycznie_odlicz_zajecia(request):
+    if request.method == "POST":
+        form = ZnajdzForm(request.POST)
+        if form.is_valid():
+            zliczenie = form.save(commit=False)
+            doodliczenia = zliczenie.numerkarty
+            klient = get_object_or_404(Klient, numerkarty=zliczenie.numerkarty)
+            return redirect('automatycznie_klient_odlicz', numerkarty=klient.numerkarty)
+    else:
+        form = ZnajdzForm()
+    return render(request, 'blog/automatycznie_odlicz_zajecia.html', {'form': form})
+def automatycznie_klient_odlicz(request, numerkarty):
+    klient = get_object_or_404(Klient, numerkarty=numerkarty)
+    waznosc = str(klient.waznedo)
+    odliczenie = str(timezone.now())
+    odliczenie = odliczenie[0:10]
+    if klient.pozostalo>0:
+        if waznosc>odliczenie:
+            klient.pozostalo = klient.pozostalo - 1
+            klient.uczestniczyl = klient.uczestniczyl + " " + odliczenie
+            klient.save()
+            return redirect('zezwolenie')
+    return redirect('brak_zezwolenia', numerkarty=klient.numerkarty)
+def zezwolenie(request):
+    return render(request, 'blog/zezwolenie.html')
+def brak_zezwolenia(request, numerkarty):
+    klient = get_object_or_404(Klient, numerkarty=numerkarty)
+    return render(request, 'blog/brak_zezwolenia.html', {'klient': klient})

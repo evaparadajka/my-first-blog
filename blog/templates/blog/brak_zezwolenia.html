@@ -1,0 +1,111 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h1>Wymagana akcja recepcjonisty</h1>
+<br />
+<br />
+<br />
+
+
+    <div class="post">
+      {% if klient.numerkarty %}
+          <div class="date">
+              {{ klient.numerkarty }}
+          </div>
+      {% endif %}
+        {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'klient_edit' numerkarty=klient.numerkarty %}">EDYTUJ KLIENTA <span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+        <!--<h1 class="ewa">{{klient.imie}}{{" "}}{{ klient.nazwisko }}</h1>-->
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th><br />Imię</th>
+                <th>Nazwisko</th>
+                <th>Numer telefonu</th>
+                <th>Adres email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="info-ewa">
+                <td>{{ klient.imie }}</td>
+                <td>{{ klient.nazwisko }}</td>
+                <td>{{ klient.telefon }}</td>
+                <td>{{ klient.email }}</td>
+              </tr>
+            </tbody>
+
+            <thead>
+              <tr>
+                <th><br />Styl</th>
+                <th>Poziom</th>
+                <th>Instruktor</th>
+                <th>Dzień tygodnia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="info-ewa">
+                <td>{{ klient.styl }}</td>
+                <td>{{ klient.poziom }}</td>
+                <td>{{ klient.instruktor }}</td>
+                <td>{{ klient.dzien }}</td>
+              </tr>
+            </tbody>
+
+            <thead>
+              <tr>
+                <th><br />Ważne od</th>
+                <th>Ważne do</th>
+                <th>Wejść w karnecie</th>
+                <th>Pozostało</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="info-ewa">
+                <td>{{ klient.wazneod }}</td>
+                <td>{{ klient.waznedo }}</td>
+                <td>{{ klient.ilosc }}</td>
+                <td>{{ klient.pozostalo }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Uczestniczył</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="info-ewa">
+                <td>{{ klient.uczestniczyl }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Komentarze i uwagi do karnetu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="info-ewa">
+                <td>{{ klient.uwagi }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'klient_odlicz' numerkarty=klient.numerkarty %}">ODLICZ ZAJĘCIA <span class="glyphicon glyphicon-ok"></span></a>
+        {% endif %}
+    </div>
+
+  <a class="btn btn-default sprawdz" href="{% url 'automatycznie_odlicz_zajecia' %}">NASTĘPNY KLIENT<span></span></a>
+  <br />
+  <br />
+  <br />
+  <br />
+{% endblock %}
