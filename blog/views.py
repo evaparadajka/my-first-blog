@@ -3,9 +3,11 @@ from django.utils import timezone
 from .models import Post
 from .models import Klient
 from .models import Zliczenie
+from .models import Filtr
 from .forms import PostForm
 from .forms import KlientForm
 from .forms import ZnajdzForm
+from .forms import FiltrujForm
 from django.shortcuts import redirect
 # Create your views here.
 
@@ -93,3 +95,13 @@ def odlicz_zajecia(request):
     else:
         form = ZnajdzForm()
     return render(request, 'blog/odlicz_zajecia.html', {'form': form})
+def filtruj(request):
+    if request.method == "POST":
+        form = FiltrujForm(request.POST)
+        if form.is_valid():
+            filtr = form.save(commit=False)
+            klients = Klient.objects.filter(styl__contains = filtr.styl) & Klient.objects.filter(instruktor__contains = filtr.instruktor) & Klient.objects.filter(poziom__contains = filtr.poziom) & Klient.objects.filter(dzien__contains = filtr.dzien)
+            return render(request, 'blog/filtruj.html', {'klients': klients})
+    else:
+        form = FiltrujForm()
+    return render(request, 'blog/filtruj.html', {'form': form})

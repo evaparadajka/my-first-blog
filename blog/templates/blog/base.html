@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>Family Dance - system autoryzacji klienta v.1.0.1</title>
+        <title>Family Dance - system autoryzacji klienta v.1.0.3</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Amiko&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -14,9 +14,15 @@
         {% if user.is_authenticated %}
         <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         {% endif %}
-        <h1><a href="/">Family Dance - system autoryzacji klienta v.1.0.2</a></h1>
+        <h1><a href="/">Family Dance - system autoryzacji klienta v.1.0.3</a></h1>
       </div>
       <div class="content container">
+        <br \>
+        <a class="btn btn-default sprawdz" href="{% url 'odlicz_zajecia' %}">TYLKO W FAMILY DANCE MOŻESZ SPRAWDZIĆ ILE MASZ JESZCZE WEJŚĆ NA KARNECIE! KLIKNIJ!<span></span></a>
+        <br \>
+        <br \>
+        <br \>
+        <br \>
        <div class="row">
            <div class="col-md-8">
            {% block content %}

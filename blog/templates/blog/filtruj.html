@@ -1,0 +1,43 @@
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+{% if not klients %}
+  <h1>Zdefiniuj wyszukiwanie</h1>
+  <form method="POST" class="post-form">{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="save btn btn-default">Szukaj</button>
+  </form>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+{% endif %}
+
+
+  {% if klients %}
+  <a class="btn btn-default sprawdz" href="{% url 'filtruj' %}">Zdefiniuj nowe wyszukiwanie<span></span></a>
+  <br />
+  <br />
+  <br />
+  {% endif %}
+
+  {% for klient in klients %}
+      <div class="post">
+          <div class="date">
+              {{ klient.numerkarty }}
+          </div>
+          <h3><a href="{% url 'klient_detail' numerkarty=klient.numerkarty %}">{{ klient.imie }}{{" "}}{{ klient.nazwisko }}</a></h3>
+          <p>{{"numer telefonu: "}}{{ klient.telefon }}</p>
+      </div>
+  {% endfor %}
+
+{% endblock content %}

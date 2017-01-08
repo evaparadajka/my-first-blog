@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^klient/(?P<numerkarty>[0-9]+)/edit/$', views.klient_edit, name='klient_edit'),
     url(r'^klient/(?P<numerkarty>[0-9]+)/odlicz/$', views.klient_odlicz, name='klient_odlicz'),
     url(r'^odlicz_zajecia', views.odlicz_zajecia, name='odlicz_zajecia'),
+    url(r'^filtruj', views.filtruj, name='filtruj'),
 ]

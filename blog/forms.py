@@ -2,6 +2,7 @@ from django import forms
 from .models import Post
 from .models import Klient
 from .models import Zliczenie
+from .models import Filtr
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -17,3 +18,12 @@ class ZnajdzForm(forms.ModelForm):
     class Meta:
         model = Zliczenie
         fields = ('numerkarty',)
+
+class FiltrujForm(forms.ModelForm):
+    styl = forms.CharField(required=False)
+    instruktor = forms.CharField(required=False)
+    poziom = forms.CharField(required=False)
+    dzien = forms.CharField(required=False)
+    class Meta:
+        model = Klient
+        fields = ('styl', 'instruktor', 'poziom', 'dzien',)

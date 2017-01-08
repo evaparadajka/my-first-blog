@@ -45,9 +45,23 @@ class Klient(models.Model):
 
 class Zliczenie(models.Model):
     numerkarty = models.CharField(max_length=20)
-    
+
     def publish(self):
         self.save()
 
     def __str__(self):
         return self.numerkarty
+
+class Filtr(models.Model):
+    imie = models.CharField(max_length=30)
+    nazwisko = models.CharField(max_length=40)
+    styl = models.CharField(max_length=20)
+    instruktor = models.CharField(max_length=70)
+    poziom = models.CharField(max_length=20)
+    dzien = models.CharField(max_length=20)
+
+    def publish(self):
+        self.save()
+
+    def __str__(self):
+        return self.atrybut
