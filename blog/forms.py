@@ -3,6 +3,7 @@ from .models import Post
 from .models import Klient
 from .models import Zliczenie
 from .models import Filtr
+from .models import Wplata
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -27,3 +28,8 @@ class FiltrujForm(forms.ModelForm):
     class Meta:
         model = Klient
         fields = ('styl', 'instruktor', 'poziom', 'dzien',)
+
+class WplataForm(forms.ModelForm):
+    class Meta:
+        model = Wplata
+        fields = ('imie', 'nazwisko', 'data_wplaty', 'kwota',)

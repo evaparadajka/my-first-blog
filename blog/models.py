@@ -65,3 +65,15 @@ class Filtr(models.Model):
 
     def __str__(self):
         return self.atrybut
+
+class Wplata(models.Model):
+    imie = models.CharField(max_length=30)
+    nazwisko = models.CharField(max_length=40)
+    data_wplaty = models.DateField(blank=True, null=True)
+    kwota = models.IntegerField()
+
+    def publish(self):
+        self.save()
+
+    def __str__(self):
+        return self.kwota

@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<a class="btn btn-default sprawdz" href="{% url 'nowa_wplata' %}">Przyjmij wpłatę<span></span></a>
+<br />
+<br />
+<br />
+
+{% for wplata in wplatas %}
+    <div class="post">
+        <div class="date">
+            {{ wplata.data_wplaty }}
+        </div>
+        <h1>{{ wplata.imie }}{{ " " }}{{ wplata.nazwisko }}{{ " " }}{{ wplata.kwota }}{{ " PLN" }}</a></h1>
+    </div>
+{% endfor %}
+{% endblock %}

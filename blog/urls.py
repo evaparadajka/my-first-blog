@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^klient/(?P<numerkarty>[0-9]+)/odlicz/$', views.klient_odlicz, name='klient_odlicz'),
     url(r'^odlicz_zajecia', views.odlicz_zajecia, name='odlicz_zajecia'),
     url(r'^filtruj', views.filtruj, name='filtruj'),
+    url(r'^wplaty', views.wplaty, name='wplaty'),
+    url(r'^nowa_wplata', views.nowa_wplata, name='nowa_wplata'),
 ]

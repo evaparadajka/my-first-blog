@@ -4,10 +4,12 @@ from .models import Post
 from .models import Klient
 from .models import Zliczenie
 from .models import Filtr
+from .models import Wplata
 from .forms import PostForm
 from .forms import KlientForm
 from .forms import ZnajdzForm
 from .forms import FiltrujForm
+from .forms import WplataForm
 from django.shortcuts import redirect
 # Create your views here.
 
@@ -105,3 +107,17 @@ def filtruj(request):
     else:
         form = FiltrujForm()
     return render(request, 'blog/filtruj.html', {'form': form})
+def wplaty(request):
+    wplatas = Wplata.objects.order_by('data_wplaty')
+    wplatas = wplatas.reverse()
+    return render(request, 'blog/wplaty.html', {'wplatas': wplatas})
+def nowa_wplata(request):
+    if request.method == "POST":
+        form = WplataForm(request.POST)
+        if form.is_valid():
+            wplata = form.save(commit=False)
+            wplata.save()
+            return redirect('wplaty')
+    else:
+        form = WplataForm()
+    return render(request, 'blog/nowa_wplata.html', {'form': form})
